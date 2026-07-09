@@ -1,0 +1,26 @@
+# Data (too large / not ours to redistribute — see data/README.md)
+data/*.csv
+data/*.tsv
+data/*.json
+
+# Trained models (large binary files)
+models/*.pkl
+models/*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# OS/editor junk
+.DS_Store
+.vscode/
+.idea/
+
+# NLTK downloads (regenerated locally)
+nltk_data/
