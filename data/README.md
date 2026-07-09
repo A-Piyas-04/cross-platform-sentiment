@@ -73,9 +73,9 @@ The notebook **keeps only labels present in both datasets** (intersection of lab
 
 The notebook applies the following steps before modeling:
 
-1. **Column standardization** — rename to `text` and `emotion`
+1. **Column standardization** — rename to `text` and `sentiment`
 2. **Label cleaning** — drop rows with missing labels; cast to integer
-3. **Label intersection** — keep only emotions shared by both platforms
+3. **Label intersection** — keep only sentiment labels shared by both platforms
 4. **Text cleaning** — lowercase, remove URLs and `@mentions`, normalize hashtags, collapse whitespace
 5. **Length filter** — remove texts with `len(text_clean) <= 10`
 6. **Class balancing** — sample up to **1,000 rows per class per platform** (`random_state=42`)
@@ -98,7 +98,7 @@ Generated after cleaning and balancing.
 | Column | Type | Description |
 |--------|------|-------------|
 | `text` | string | Original text field (standardized column name) |
-| `emotion` | int | Sentiment label: -1, 0, or 1 |
+| `sentiment` | int | Sentiment label: -1, 0, or 1 |
 | `text_clean` | string | Cleaned text used for modeling |
 
 ### `reddit_linguistic.csv` / `twitter_linguistic.csv`
@@ -118,7 +118,7 @@ Per-sample linguistic feature tables used in compression analysis.
 | `first_person_dens` | Density of first-person pronouns |
 | `sentence_count` | Number of sentences |
 
-Platform-level aggregates are saved to `results/compression_by_emotion.csv`.
+Platform-level aggregates are saved to `results/compression_by_sentiment.csv`.
 
 ---
 

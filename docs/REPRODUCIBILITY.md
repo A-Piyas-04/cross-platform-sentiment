@@ -68,13 +68,13 @@ jupyter notebook notebooks/ML_Project_final.ipynb
 
 ### 3. Adjust paths (if needed)
 
-The Colab-oriented notebook uses `/content/emotion_project` as its base directory. For local runs, either:
+The Colab-oriented notebook uses `/content/sentiment_project` as its base directory. For local runs, either:
 
 - Run in Google Colab as-is, or
 - Modify the first path-setup cell to use a local base, e.g.:
 
 ```python
-BASE = './emotion_project'   # or an absolute path
+BASE = './sentiment_project'   # or an absolute path
 ```
 
 Create the folder structure:
@@ -104,11 +104,11 @@ Runtime: approximately **5–15 minutes** depending on hardware (linguistic feat
 
 1. Upload [`../notebooks/ML_Project_final.ipynb`](../notebooks/ML_Project_final.ipynb) to Colab.
 2. Upload `Reddit_Data.csv` and `Twitter_Data.csv` to the Colab session (or mount Google Drive).
-3. Run the folder-setup cell — it creates `/content/emotion_project/`.
+3. Run the folder-setup cell — it creates `/content/sentiment_project/`.
 4. Place raw CSVs in the working directory or update paths in the loading cell.
 5. Run all cells sequentially.
 
-**Output location:** `/content/emotion_project/`
+**Output location:** `/content/sentiment_project/`
 
 Download artifacts from the Colab file browser when complete.
 
@@ -142,10 +142,10 @@ Expected startup output:
 Kaggle paths ready!
   Reddit:  /kaggle/input/<dataset-slug>/Reddit_Data.csv
   Twitter: /kaggle/input/<dataset-slug>/Twitter_Data.csv
-  Output:  /kaggle/working/emotion_project
+  Output:  /kaggle/working/sentiment_project
 ```
 
-**Output location:** `/kaggle/working/emotion_project/`
+**Output location:** `/kaggle/working/sentiment_project/`
 
 ---
 
@@ -196,8 +196,8 @@ After a successful run, you should have:
 | File | Description |
 |------|-------------|
 | `model_leaderboard.csv` | Model comparison table |
-| `per_emotion_performance.csv` | Per-class metrics |
-| `compression_by_emotion.csv` | Linguistic compression stats |
+| `per_sentiment_performance.csv` | Per-class sentiment metrics |
+| `compression_by_sentiment.csv` | Linguistic compression stats |
 | `calibration_summary.csv` | ECE per class |
 | `coral_results.csv` | CORAL vs baseline |
 | `clinical_risk_summary.csv` | Risk framing table |

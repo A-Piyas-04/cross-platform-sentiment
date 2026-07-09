@@ -1,4 +1,4 @@
-emotion,platform,precision,recall,f1-score
+sentiment,platform,precision,recall,f1-score
 1,Reddit,0.73,0.73,0.73
 1,Twitter,0.716824644549763,0.605,0.6561822125813449
 -1,Reddit,0.6818181818181818,0.675,0.678391959798995

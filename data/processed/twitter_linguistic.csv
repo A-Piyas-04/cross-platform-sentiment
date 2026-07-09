@@ -1,4 +1,4 @@
-emotion,type_token_ratio,avg_word_length,exclamation_dens,question_dens,emoji_count,positive_ratio,negative_ratio,sentiment_polarity,first_person_dens,sentence_count
+sentiment,type_token_ratio,avg_word_length,exclamation_dens,question_dens,emoji_count,positive_ratio,negative_ratio,sentiment_polarity,first_person_dens,sentence_count
 -1,1.0,6.642857142857143,0.0,0.0,0.0,0.283,0.06,-0.15000000000000002,0.0,1.0
 -1,0.8571428571428571,4.428571428571429,0.0,0.0,0.0,0.0,0.103,-0.225,0.0,1.0
 -1,1.0,6.133333333333334,0.0,0.0,0.0,0.0,0.217,-0.18333333333333335,0.0,1.0

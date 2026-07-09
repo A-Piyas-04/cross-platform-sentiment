@@ -8,7 +8,7 @@ This document summarizes the main experimental outcomes from the Reddit → Twit
 
 1. [Baseline Model Leaderboard](#baseline-model-leaderboard)
 2. [Best Model Selection](#best-model-selection)
-3. [Per-Emotion Performance](#per-emotion-performance)
+3. [Per-Class Sentiment Performance](#per-class-sentiment-performance)
 4. [Domain Shift Visualization](#domain-shift-visualization)
 5. [Linguistic Compression](#linguistic-compression)
 6. [Calibration Analysis](#calibration-analysis)
@@ -53,12 +53,12 @@ Saved artifacts (when notebook completes):
 
 ---
 
-## Per-Emotion Performance
+## Per-Class Sentiment Performance
 
 Best-model context (SVM family results; per-class breakdown from evaluation stage):
 
-| Emotion | Label | Platform | Precision | Recall | F1 |
-|---------|-------|----------|-----------|--------|-----|
+| Sentiment | Label | Platform | Precision | Recall | F1 |
+|-----------|-------|----------|-----------|--------|-----|
 | Positive | 1 | Reddit | 0.730 | 0.730 | 0.730 |
 | Positive | 1 | Twitter | 0.717 | 0.605 | 0.656 |
 | Neutral | 0 | Reddit | 0.748 | 0.755 | 0.751 |
@@ -66,7 +66,7 @@ Best-model context (SVM family results; per-class breakdown from evaluation stag
 | Negative | -1 | Reddit | 0.682 | 0.675 | 0.678 |
 | Negative | -1 | Twitter | 0.628 | 0.634 | 0.631 |
 
-**Source:** `results/per_emotion_performance.csv`
+**Source:** `results/per_sentiment_performance.csv`
 
 ### Observations
 
@@ -87,17 +87,17 @@ Best-model context (SVM family results; per-class breakdown from evaluation stag
 
 ## Linguistic Compression
 
-Platform-level feature differences per emotion (selected metrics):
+Platform-level feature differences per sentiment class (selected metrics):
 
-| Emotion | Δ Type-Token Ratio (Reddit − Twitter) | Δ Avg Word Length |
-|---------|---------------------------------------|-------------------|
+| Sentiment | Δ Type-Token Ratio (Reddit − Twitter) | Δ Avg Word Length |
+|-----------|---------------------------------------|-------------------|
 | Positive (1) | −0.048 | −0.108 |
 | Negative (-1) | −0.025 | −0.162 |
 | Neutral (0) | −0.005 | +0.127 |
 
-**Source:** `results/compression_by_emotion.csv`
+**Source:** `results/compression_by_sentiment.csv`
 
-Twitter text tends toward **higher type-token ratio** (more unique tokens relative to length) but **shorter average word length** for negative sentiment. Positive emotion shows the largest TTR compression gap, aligning with its larger F1 drop.
+Twitter text tends toward **higher type-token ratio** (more unique tokens relative to length) but **shorter average word length** for negative sentiment. The positive class shows the largest TTR compression gap, aligning with its larger F1 drop.
 
 | Plot | File |
 |------|------|
@@ -109,8 +109,8 @@ Twitter text tends toward **higher type-token ratio** (more unique tokens relati
 
 Expected Calibration Error (ECE) on Twitter test using Logistic Regression probabilities:
 
-| Emotion | Label | ECE |
-|---------|-------|-----|
+| Sentiment | Label | ECE |
+|-----------|-------|-----|
 | Negative | -1 | 0.130 |
 | Neutral | 0 | 0.111 |
 | Positive | 1 | 0.144 |
@@ -144,8 +144,8 @@ Comparison on Twitter test (Logistic Regression, 3000 TF-IDF features):
 
 Framing negative sentiment as a high-risk detection target:
 
-| Emotion | Reddit F1 | Twitter F1 | F1 Drop | Missed Rate | Flagged Clinical |
-|---------|-----------|------------|---------|-------------|------------------|
+| Sentiment | Reddit F1 | Twitter F1 | F1 Drop | Missed Rate | Flagged Clinical |
+|-----------|-----------|------------|---------|-------------|------------------|
 | Neutral | 0.751 | 0.672 | 0.080 | 0.106 | No |
 | Positive | 0.730 | 0.656 | 0.074 | 0.101 | No |
 | **Negative** | 0.678 | 0.631 | 0.047 | **0.070** | **Yes** |
@@ -165,9 +165,9 @@ Although negative sentiment has the smallest F1 drop in absolute terms, it is fl
 | Category | Path | Description |
 |----------|------|-------------|
 | Leaderboard | `results/model_leaderboard (1).csv` | All baseline models compared |
-| Per-class metrics | `results/per_emotion_performance.csv` | Precision/recall/F1 by emotion × platform |
-| Compression | `results/compression_by_emotion.csv` | Linguistic feature diffs per class |
-| Calibration | `results/calibration_summary.csv` | ECE per emotion |
+| Per-class metrics | `results/per_sentiment_performance.csv` | Precision/recall/F1 by sentiment class × platform |
+| Compression | `results/compression_by_sentiment.csv` | Linguistic feature diffs per class |
+| Calibration | `results/calibration_summary.csv` | ECE per sentiment class |
 | CORAL | `results/coral_results (1).csv` | Baseline vs CORAL comparison |
 | Risk | `results/clinical_risk_summary (1).csv` | F1 drop + missed rate framing |
 | Plots | `visualisations/*.png` | All generated figures |

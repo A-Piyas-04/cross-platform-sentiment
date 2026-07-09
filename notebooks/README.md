@@ -1,6 +1,6 @@
 # Notebooks
 
-This folder contains the end-to-end Jupyter notebooks for the cross-platform sentiment classification project. All pipeline logic lives here — there are no separate Python scripts.
+This folder contains the end-to-end Jupyter notebooks for the cross-platform **sentiment classification** project. All pipeline logic lives here — there are no separate Python scripts.
 
 ---
 
@@ -8,7 +8,7 @@ This folder contains the end-to-end Jupyter notebooks for the cross-platform sen
 
 | Notebook | Environment | Description |
 |----------|-------------|-------------|
-| [`ML_Project_final.ipynb`](ML_Project_final.ipynb) | Google Colab / local | Primary notebook. Uses `/content/emotion_project` paths. |
+| [`ML_Project_final.ipynb`](ML_Project_final.ipynb) | Google Colab / local | Primary notebook. Uses `/content/sentiment_project` paths. |
 | [`ML_Project_kaggle.ipynb`](ML_Project_kaggle.ipynb) | Kaggle | Same 22-stage pipeline with Kaggle path auto-discovery. |
 
 Both notebooks implement the **identical analysis pipeline**; only paths and environment setup differ.
@@ -30,7 +30,7 @@ Both notebooks implement the **identical analysis pipeline**; only paths and env
 | # | Stage | Output |
 |---|-------|--------|
 | 1 | Dataset loading | Standardized DataFrames |
-| 2 | Label alignment | Common emotion labels only |
+| 2 | Label alignment | Shared sentiment labels only (-1, 0, 1) |
 | 3 | Text cleaning | `text_clean` column |
 | 4 | Class balancing | 1000 samples/class/platform |
 | 5 | Save processed data | `*_processed.csv` |
@@ -44,9 +44,9 @@ Both notebooks implement the **identical analysis pipeline**; only paths and env
 | 13 | Classification reports | Per-class metrics |
 | 14 | Error analysis | Misclassified Twitter samples |
 | 15 | Model persistence | `best_model.pkl`, `vectorizer.pkl` |
-| 16 | Per-class tracking | `per_emotion_performance.csv` |
+| 16 | Per-class tracking | `per_sentiment_performance.csv` |
 | 17 | Linguistic features | `*_linguistic.csv` |
-| 18 | Compression analysis | `compression_by_emotion.csv` |
+| 18 | Compression analysis | `compression_by_sentiment.csv` |
 | 19 | Correlation analysis | `compression_vs_transfer.png` |
 | 20 | Calibration | `calibration_summary.csv`, curves plot |
 | 21 | CORAL adaptation | `coral_results.csv`, `coral_model.pkl` |
@@ -62,7 +62,7 @@ Full methodology: [`../docs/METHODOLOGY.md`](../docs/METHODOLOGY.md)
 
 1. **Markdown header** — dataset requirements and path overview
 2. **Auto-discovery cell** — finds `Reddit_Data.csv` and `Twitter_Data.csv` anywhere under `/kaggle/input/`
-3. **Working directory** — all outputs go to `/kaggle/working/emotion_project/`
+3. **Working directory** — all outputs go to `/kaggle/working/sentiment_project/`
 
 If file discovery fails, the notebook prints every file under `/kaggle/input/` to help debug dataset attachment issues.
 

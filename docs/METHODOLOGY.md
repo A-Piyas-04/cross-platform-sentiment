@@ -51,21 +51,21 @@ See [`../data/README.md`](../data/README.md) for schema details.
 ### Stage 1 — Load and Standardize
 
 ```python
-reddit.rename(columns={'clean_comment': 'text', 'category': 'emotion'})
-twitter.rename(columns={'clean_text': 'text', 'category': 'emotion'})
+reddit.rename(columns={'clean_comment': 'text', 'category': 'sentiment'})
+twitter.rename(columns={'clean_text': 'text', 'category': 'sentiment'})
 ```
 
 ### Stage 2 — Label Cleaning
 
-- Drop rows with missing `emotion`
+- Drop rows with missing `sentiment`
 - Cast labels to integer
 
 ### Stage 3 — Label Alignment
 
-Keep only emotions present in **both** platforms:
+Keep only sentiment labels present in **both** platforms:
 
 ```python
-common = set(reddit['emotion']).intersection(set(twitter['emotion']))
+common = set(reddit['sentiment']).intersection(set(twitter['sentiment']))
 ```
 
 ### Stage 4 — Text Cleaning (`clean_text`)
@@ -87,7 +87,7 @@ Remove samples where `len(text_clean) <= 10`.
 
 For each platform independently:
 
-- Group by `emotion`
+- Group by `sentiment`
 - Sample up to **1,000** rows per class
 - Use `random_state=42`
 
@@ -111,7 +111,7 @@ Twitter (3,000 balanced)
 Split call:
 
 ```python
-train_test_split(..., test_size=0.2, stratify=emotion, random_state=42)
+train_test_split(..., test_size=0.2, stratify=sentiment, random_state=42)
 ```
 
 ---
@@ -169,13 +169,13 @@ All models use scikit-learn implementations.
 
 ### A. Linguistic Compression
 
-Extract 10 linguistic features per sample (see [`../data/README.md`](../data/README.md)), then compare Reddit vs Twitter means per emotion class.
+Extract 10 linguistic features per sample (see [`../data/README.md`](../data/README.md)), then compare Reddit vs Twitter means per sentiment class.
 
-**Compression hypothesis:** Larger Reddit→Twitter structural differences (e.g., type-token ratio) correlate with larger F1 drops.
+**Compression hypothesis:** Larger Reddit→Twitter structural differences (e.g., type-token ratio) correlate with larger F1 drops per sentiment class.
 
 Outputs:
 
-- `results/compression_by_emotion.csv`
+- `results/compression_by_sentiment.csv`
 - `visualisations/compression_vs_transfer.png`
 - `visualisations/f1_drop_bar.png`
 
@@ -184,7 +184,7 @@ Outputs:
 Use Logistic Regression `predict_proba` on Twitter test.
 
 - Reliability curves per class
-- ECE per emotion
+- ECE per sentiment class
 
 Outputs:
 
@@ -225,7 +225,7 @@ Output: `results/coral_results.csv`, `models/coral_model.pkl`
 
 Negative sentiment (`-1`) is treated as a **high-risk / clinically relevant** class.
 
-For each emotion:
+For each sentiment class:
 
 - F1 on Reddit vs Twitter
 - F1 drop under domain shift
@@ -242,7 +242,7 @@ Output: `results/clinical_risk_summary.csv`, `visualisations/clinical_risk_chart
 | Balancing seed | `random_state=42` |
 | Train/val split seed | `random_state=42` |
 | TF-IDF fit scope | Reddit train only |
-| Class cap | 1000 per emotion per platform |
+| Class cap | 1000 per sentiment class per platform |
 
 Full setup instructions: [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md)
 

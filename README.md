@@ -1,4 +1,4 @@
-# Cross-Platform Emotion Classification (Reddit → Twitter)
+# Cross-Platform Sentiment Classification (Reddit → Twitter)
 
 A research-oriented machine learning project that studies **cross-domain generalization** for sentiment classification: models are trained on Reddit text and evaluated on Twitter text without target-domain labels. The work combines classical NLP baselines, diagnostic analysis of domain shift, and a domain-adaptation experiment (CORAL).
 
@@ -50,7 +50,7 @@ Labels are ternary sentiment scores shared across both datasets:
 ## Key Findings
 
 1. **Domain shift is real.** The best baseline (Linear SVM) drops from **0.72 F1** on Reddit validation to **0.653 F1** on Twitter test (~9.3% relative drop).
-2. **Compression correlates with transfer loss.** Emotions expressed more tersely on Twitter show larger F1 declines; type-token ratio differences help explain per-class degradation.
+2. **Compression correlates with transfer loss.** Sentiment classes whose wording is more compressed on Twitter tend to see larger F1 drops; type-token ratio differences help explain per-class degradation.
 3. **Models are overconfident cross-domain.** Expected Calibration Error (ECE) on Twitter ranges from **0.11–0.14** across classes.
 4. **CORAL did not help.** Covariance alignment reduced Twitter F1 from **0.633 → 0.586** for Logistic Regression, suggesting the mismatch is not purely distributional.
 5. **Negative sentiment carries operational risk.** When framed as a high-risk class, negative sentiment shows the largest missed-detection concern under domain shift.
@@ -191,7 +191,7 @@ Full environment instructions: [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.
 
 - Replace TF-IDF with contextual embeddings (BERT, RoBERTa) to capture semantic shift.
 - Explore adversarial or neural domain-adaptation beyond CORAL.
-- Extend to additional platforms and finer-grained emotion taxonomies.
+- Extend to additional platforms and finer-grained sentiment schemes (e.g., star ratings, aspect-based sentiment).
 - Add a proper Python package (`src/`) and inference CLI for reproducible deployment.
 
 ---
