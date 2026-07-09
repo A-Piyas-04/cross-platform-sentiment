@@ -103,7 +103,7 @@ Generated after cleaning and balancing.
 
 ### `reddit_linguistic.csv` / `twitter_linguistic.csv`
 
-Per-sample linguistic feature tables used in compression analysis.
+Per-sample linguistic feature tables used in compression analysis. Each row includes a `sentiment` label column plus:
 
 | Feature | Description |
 |---------|-------------|

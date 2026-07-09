@@ -1,6 +1,6 @@
 # Cross-Platform Sentiment Classification (Reddit → Twitter)
 
-A research-oriented machine learning project that studies **cross-domain generalization** for sentiment classification: models are trained on Reddit text and evaluated on Twitter text without target-domain labels. The work combines classical NLP baselines, diagnostic analysis of domain shift, and a domain-adaptation experiment (CORAL).
+A research-oriented machine learning project that studies **cross-domain generalization** for ternary sentiment classification (negative / neutral / positive): models are trained on Reddit text and evaluated on Twitter text without target-domain labels. The work combines classical NLP baselines, diagnostic analysis of domain shift, and a domain-adaptation experiment (CORAL).
 
 ---
 
@@ -92,7 +92,7 @@ Detailed stage-by-stage documentation: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.
 ## Repository Structure
 
 ```
-emotion-classification-cross-platform/
+emotion-classification-cross-platform/   # repo name; classifies sentiment (-1 / 0 / 1)
 ├── notebooks/
 │   ├── ML_Project_final.ipynb    # Full pipeline (Colab / local)
 │   └── ML_Project_kaggle.ipynb   # Same pipeline for Kaggle
